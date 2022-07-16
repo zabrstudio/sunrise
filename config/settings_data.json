@@ -5,7 +5,7 @@
     "colors_accent_2": "#334FB4",
     "colors_text": "#121212",
     "colors_outline_button_labels": "#121212",
-    "colors_background_1": "#FFFFFF",
+    "colors_background_1": "#f8efe9",
     "colors_background_2": "#F3F3F3",
     "type_header_font": "assistant_n4",
     "type_body_font": "assistant_n4",
@@ -33,7 +33,8 @@
         "type": "header",
         "settings": {
           "color_scheme": "background-1",
-          "logo_width": 100,
+          "logo": "shopify:\/\/shop_images\/Minimalist_Brown_Music_Logo_Instagram.png",
+          "logo_width": 190,
           "logo_position": "middle-left",
           "menu": "main-menu",
           "menu_type_desktop": "dropdown",
