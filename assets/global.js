@@ -529,6 +529,7 @@ class SliderComponent extends HTMLElement {
     this.pageTotalElement = this.querySelector('.slider-counter--total');
     this.prevButton = this.querySelector('button[name="previous"]');
     this.nextButton = this.querySelector('button[name="next"]');
+    this.productSlider = this.querySelector('.product-slider-box');
 
     if (!this.slider || !this.nextButton) return;
 
@@ -546,7 +547,11 @@ class SliderComponent extends HTMLElement {
     if (this.sliderItemsToShow.length < 2) return;
     this.sliderItemOffset = this.sliderItemsToShow[1].offsetLeft - this.sliderItemsToShow[0].offsetLeft;
     this.slidesPerPage = Math.floor((this.slider.clientWidth - this.sliderItemsToShow[0].offsetLeft) / this.sliderItemOffset);
-    this.totalPages = this.sliderItemsToShow.length - this.slidesPerPage + 1;
+    if (this.productSlider) {
+      this.totalPages = sliderItemsToShow.length - this.slidesPerPage + 4
+    } else {
+      this.totalPages = sliderItemsToShow.length - this.slidesPerPage + 1;
+    }
     this.update();
   }
 
@@ -572,6 +577,12 @@ class SliderComponent extends HTMLElement {
     }
 
     if (this.enableSliderLooping) return;
+
+    if (this.productSlider) {
+      this.currentPage = Math.round(this.slider.scrollLeft / this.sliderLastItem.clientWidth) + 4
+    } else {
+      this.currentPage = Math.round(this.slider.scrollLeft / this.sliderLastItem.clientWidth) + 1;
+    }
 
     if (this.isSlideVisible(this.sliderItemsToShow[0]) && this.slider.scrollLeft === 0) {
       this.prevButton.setAttribute('disabled', 'disabled');
