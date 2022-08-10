@@ -562,7 +562,11 @@ class SliderComponent extends HTMLElement {
 
   update() {
     const previousPage = this.currentPage;
-    this.currentPage = Math.round(this.slider.scrollLeft / this.sliderItemOffset) + 1;
+    if (this.productSlider) {
+      this.currentPage = Math.round(this.slider.scrollLeft / this.sliderLastItem.clientWidth) + 4
+    } else {
+      this.currentPage = Math.round(this.slider.scrollLeft / this.sliderLastItem.clientWidth) + 1;
+    }
 
     if (this.currentPageElement && this.pageTotalElement) {
       this.currentPageElement.textContent = this.currentPage;
@@ -577,12 +581,6 @@ class SliderComponent extends HTMLElement {
     }
 
     if (this.enableSliderLooping) return;
-
-    if (this.productSlider) {
-      this.currentPage = Math.round(this.slider.scrollLeft / this.sliderLastItem.clientWidth) + 4
-    } else {
-      this.currentPage = Math.round(this.slider.scrollLeft / this.sliderLastItem.clientWidth) + 1;
-    }
 
     if (this.isSlideVisible(this.sliderItemsToShow[0]) && this.slider.scrollLeft === 0) {
       this.prevButton.setAttribute('disabled', 'disabled');
